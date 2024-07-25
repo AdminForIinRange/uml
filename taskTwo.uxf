@@ -1,0 +1,44 @@
+<diagram program="umletino" version="15.1"><zoom_level>5</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>170</x><y>335</y><w>105</w><h>95</h></coordinates><panel_attributes>Member
+--
++ username : VARCHAR(100) &lt;&lt;PK&gt;&gt;
+- name : VARCHAR(100)
+- email : VARCHAR(100) &lt;&lt;UNIQUE&gt;&gt;
+- country : VARCHAR(100)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>320</y><w>105</w><h>95</h></coordinates><panel_attributes>Toy
+--
++ toy_id : INT &lt;&lt;PK&gt;&gt;
+- name : VARCHAR(100)
+- type : VARCHAR(100)
+- age : INT
+- member_username : VARCHAR(100) &lt;&lt;FK&gt;&gt;  // FK referencing Member.username</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>440</y><w>105</w><h>95</h></coordinates><panel_attributes>Location
+--
++ location_id : INT &lt;&lt;PK&gt;&gt;
+- city : VARCHAR(100)
+- country : VARCHAR(100)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>520</x><y>325</y><w>105</w><h>95</h></coordinates><panel_attributes>Photo
+--
++ photo_id : INT &lt;&lt;PK&gt;&gt;
+- url : VARCHAR(255)
+- date_from : DATE
+- date_to : DATE
+ - toy_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing Toy.toy_id
+- location_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing Location.location_id</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>780</x><y>560</y><w>165</w><h>95</h></coordinates><panel_attributes>Vote
+--
++ vote_id : INT &lt;&lt;PK&gt;&gt;
+- photo_id : INT &lt;&lt;FK&gt;&gt;  
+// FK referencing Photo.photo_id
+- member_username : VARCHAR(100) &lt;&lt;FK&gt;&gt; 
+// FK referencing Member.username</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>620</x><y>365</y><w>200</w><h>25</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+owns &gt;</panel_attributes><additional_attributes>10;20;380;20</additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>370</y><w>265</w><h>25</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+visits &gt;</panel_attributes><additional_attributes>10;20;510;20</additional_attributes></element><element><id>Relation</id><coordinates><x>565</x><y>420</y><w>255</w><h>85</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+has &gt;</panel_attributes><additional_attributes>10;10;10;140;490;140</additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>350</y><w>265</w><h>25</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+ &lt; has</panel_attributes><additional_attributes>10;20;510;20</additional_attributes></element><element><id>Relation</id><coordinates><x>215</x><y>425</y><w>575</w><h>200</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+&lt; votes</panel_attributes><additional_attributes>10;10;10;370;1130;370</additional_attributes></element></diagram>

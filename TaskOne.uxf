@@ -1,0 +1,38 @@
+<diagram program="umletino" version="15.1"><zoom_level>4</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>176</x><y>408</y><w>84</w><h>76</h></coordinates><panel_attributes>Contestant
+--
++ contestant_id : INT &lt;&lt;PK&gt;&gt;
+- name : VARCHAR(100)
+- age : INT
+- address : VARCHAR(255) 
+- waiver_signed : BOOLEAN
+- release_form_signed : BOOLEAN</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>688</x><y>492</y><w>84</w><h>76</h></coordinates><panel_attributes>Injury
+--
++ injury_id : INT &lt;&lt;PK&gt;&gt;
+- type : VARCHAR(100)
+- description : VARCHAR(255)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>456</x><y>400</y><w>84</w><h>76</h></coordinates><panel_attributes>Event
+--
++ event_id : INT &lt;&lt;PK&gt;&gt;
+- date : DATE
+- location : VARCHAR(255)
+- winner : INT &lt;&lt;FK&gt;&gt; </panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>496</x><y>368</y><w>204</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+has &gt;</panel_attributes><additional_attributes>10;80;10;20;490;20</additional_attributes></element><element><id>Relation</id><coordinates><x>256</x><y>436</y><w>212</w><h>20</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+participates &gt;</panel_attributes><additional_attributes>10;20;510;20</additional_attributes></element><element><id>Relation</id><coordinates><x>492</x><y>476</y><w>204</w><h>68</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+has &gt;</panel_attributes><additional_attributes>10;10;10;140;490;140</additional_attributes></element><element><id>Relation</id><coordinates><x>256</x><y>420</y><w>212</w><h>20</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+&lt; winner</panel_attributes><additional_attributes>10;20;510;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>640</y><w>84</w><h>76</h></coordinates><panel_attributes>Event
+--
++ event_id : INT &lt;&lt;PK&gt;&gt;
+- date : DATE
+- location : VARCHAR(255)
+- winner : INT &lt;&lt;FK&gt;&gt; </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>692</x><y>336</y><w>84</w><h>76</h></coordinates><panel_attributes>Cheese
+--
++ cheese_id : INT &lt;PK&gt;
+- weight : FLOAT
+- type : VARCHAR(100)</panel_attributes><additional_attributes></additional_attributes></element></diagram>

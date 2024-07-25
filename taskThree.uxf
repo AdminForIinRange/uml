@@ -1,0 +1,37 @@
+<diagram program="umletino" version="15.1"><zoom_level>6</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>6</x><y>384</y><w>126</w><h>114</h></coordinates><panel_attributes>Episode
+        --
++ episode_id : INT &lt;&lt;PK&gt;&gt;
+- title : VARCHAR(255)
+- air_date : DATE
+ - theme_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing Theme.theme_id</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>774</x><y>366</y><w>126</w><h>114</h></coordinates><panel_attributes>Presenter
+--
++ presenter_id : INT &lt;&lt;PK&gt;&gt;
+- name : VARCHAR(100)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>774</x><y>510</y><w>126</w><h>114</h></coordinates><panel_attributes>Producer
+--
++ producer_id : INT &lt;&lt;PK&gt;&gt;
+- name : VARCHAR(100)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>426</x><y>372</y><w>126</w><h>114</h></coordinates><panel_attributes>Theme
+--
++ theme_id : INT &lt;&lt;PK&gt;&gt;
+- description : VARCHAR(255)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>774</x><y>612</y><w>126</w><h>114</h></coordinates><panel_attributes>Toy
+--
++ toy_id : INT &lt;&lt;PK&gt;&gt;
+- name : VARCHAR(100)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>288</x><y>588</y><w>126</w><h>114</h></coordinates><panel_attributes>EpisodeToy
+--
++ episode_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing Episode.episode_id
++ toy_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing Toy.toy_id
+ - PRIMARY KEY (episode_id, toy_id)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>546</x><y>420</y><w>240</w><h>30</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+presented_by &gt;</panel_attributes><additional_attributes>10;20;380;20</additional_attributes></element><element><id>Relation</id><coordinates><x>126</x><y>438</y><w>318</w><h>30</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+produced_by &gt;</panel_attributes><additional_attributes>10;20;510;20</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>486</y><w>306</w><h>102</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+themed &gt;</panel_attributes><additional_attributes>10;10;10;140;490;140</additional_attributes></element><element><id>Relation</id><coordinates><x>126</x><y>402</y><w>318</w><h>30</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=0..*
+appears_in &gt;</panel_attributes><additional_attributes>10;20;510;20</additional_attributes></element><element><id>Relation</id><coordinates><x>426</x><y>672</y><w>318</w><h>30</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+features &gt;</panel_attributes><additional_attributes>10;20;510;20</additional_attributes></element></diagram>

@@ -1,0 +1,44 @@
+<diagram program="umletino" version="15.1"><zoom_level>6</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>246</x><y>306</y><w>126</w><h>114</h></coordinates><panel_attributes>Person
+--
++ person_id : INT &lt;&lt;PK&gt;&gt;
+- name : VARCHAR(100)
+- nation_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing Nation.nation_id
+- bending_ability_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing BendingAbility.bending_ability_id</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1014</x><y>288</y><w>126</w><h>114</h></coordinates><panel_attributes>Nation
+--
++ nation_id : INT &lt;&lt;PK&gt;&gt;
+- name : VARCHAR(100)
+- capital_city_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing City.city_id</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1014</x><y>432</y><w>126</w><h>114</h></coordinates><panel_attributes>City
+--
++ city_id : INT &lt;&lt;PK&gt;&gt;
+- name : VARCHAR(100)
+- nation_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing Nation.nation_id</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>666</x><y>294</y><w>126</w><h>114</h></coordinates><panel_attributes>War
+--
++ war_id : INT &lt;&lt;PK&gt;&gt;
+- nation1_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing Nation.nation_id
+- nation2_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing Nation.nation_id
+- start_date : DATE
+- end_date : DATE
+- description : VARCHAR(255)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>558</x><y>474</y><w>126</w><h>114</h></coordinates><panel_attributes>BendingAbility
+--
++ bending_ability_id : INT &lt;&lt;PK&gt;&gt;
+- name : VARCHAR(100)
+- type : VARCHAR(100)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>666</x><y>636</y><w>126</w><h>114</h></coordinates><panel_attributes>Avatar
+--
++ avatar_id : INT &lt;&lt;PK&gt;&gt;
+- person_id : INT &lt;&lt;FK&gt;&gt;  // FK referencing Person.person_id
+- reincarnation_date : DATE</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>786</x><y>342</y><w>240</w><h>30</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+has &gt;</panel_attributes><additional_attributes>10;20;380;20</additional_attributes></element><element><id>Relation</id><coordinates><x>366</x><y>348</y><w>318</w><h>30</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=1
+located_in &gt;</panel_attributes><additional_attributes>10;20;510;20</additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>408</y><w>306</w><h>102</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+involved_in &gt;</panel_attributes><additional_attributes>10;10;10;140;490;140</additional_attributes></element><element><id>Relation</id><coordinates><x>738</x><y>594</y><w>318</w><h>30</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+embodies &gt;</panel_attributes><additional_attributes>10;20;510;20</additional_attributes></element><element><id>Relation</id><coordinates><x>366</x><y>324</y><w>318</w><h>30</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=1
+bends &gt;</panel_attributes><additional_attributes>10;20;510;20</additional_attributes></element></diagram>
