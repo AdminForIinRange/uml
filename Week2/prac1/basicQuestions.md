@@ -57,3 +57,76 @@ In this design, a Customer can have zero or one Address (0…1). This means that
 
 The primary key of ItemMarkupHistory is itemID (PK), and for ItemsInOrder, it’s numberOf. A primary key is a unique identifier for each record in a database table. It must contain unique values and cannot be null.
 
+
+```sql 
+CREATE TABLE Addresses (
+    addressID INT IDENTITY PRIMARY KEY,
+    addressLine VARCHAR(100) NOT NULL,
+    suburb VARCHAR(50) NOT NULL,
+    postcode VARCHAR(10) NOT NULL,
+    region VARCHAR(50) NOT NULL,
+    country VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Customers (
+    customerID INT IDENTITY PRIMARY KEY,
+    firstName VARCHAR(100) NOT NULL,
+    lastName VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    mainPhoneNumber VARCHAR(15) NOT NULL,
+    secondaryPhoneNumber VARCHAR(15),
+    addressID INT FOREIGN KEY REFERENCES Addresses(addressID)
+);
+
+CREATE TABLE ItemCategories (
+    categoryID INT IDENTITY PRIMARY KEY,
+    parentCategoryID INT FOREIGN KEY REFERENCES ItemCategories(categoryID),
+    categoryName VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Items (
+    itemID INT IDENTITY PRIMARY KEY,
+    itemName VARCHAR(150) NOT NULL,
+    itemDescription VARCHAR(MAX) NOT NULL,
+    itemCost DECIMAL(10,2) NOT NULL,
+    itemImage VARCHAR(MAX) NOT NULL,
+    categoryID INT NOT NULL FOREIGN KEY REFERENCES ItemCategories(categoryID)
+);
+
+CREATE TABLE CustomerOrders (
+    orderNumber INT IDENTITY PRIMARY KEY,
+    customerID INT NOT NULL FOREIGN KEY REFERENCES Customers(customerID),
+    orderDate DATE NOT NULL DEFAULT GETDATE(),
+    datePaid DATE
+);
+
+CREATE TABLE ItemsInOrder (
+    orderNumber INT NOT NULL FOREIGN KEY REFERENCES CustomerOrders(orderNumber),
+    itemID INT NOT NULL FOREIGN KEY REFERENCES Items(itemID),
+    numberOf INT NOT NULL DEFAULT 1,
+    totalItemCost DECIMAL(10,2),
+    PRIMARY KEY (orderNumber, itemID)
+);
+
+CREATE TABLE Reviews (
+    reviewID INT IDENTITY PRIMARY KEY,
+    customerID INT NOT NULL,
+    itemID INT NOT NULL,
+    reviewDate DATE NOT NULL DEFAULT GETDATE(),
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    reviewDescription VARCHAR(MAX) NOT NULL,
+    CONSTRAINT CK1 UNIQUE (customerID, itemID, reviewDate),
+    FOREIGN KEY (customerID) REFERENCES Customers(customerID),
+    FOREIGN KEY (itemID) REFERENCES Items(itemID)
+);
+
+CREATE TABLE ItemMarkupHistory (
+    itemID INT NOT NULL FOREIGN KEY REFERENCES Items(itemID),
+    startDate DATE NOT NULL,
+    endDate DATE,
+    markup DECIMAL(4,1) DEFAULT 1.3 NOT NULL,
+    sale BIT DEFAULT 0,
+    PRIMARY KEY (itemID, startDate)
+);
+
+```
