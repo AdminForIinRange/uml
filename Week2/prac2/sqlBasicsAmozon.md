@@ -1,6 +1,119 @@
 
 
-help
+my form prac help
+
+```sql
+CREATE TABLE Addresses (
+    addressID INT IDENTITY,
+    addressLine VARCHAR(100) NOT NULL,
+    suburb VARCHAR(50) NOT NULL,
+    postcode VARCHAR(10) NOT NULL,
+    region VARCHAR(50) NOT NULL,
+    country VARCHAR(50) NOT NULL
+    CONSTRAINT pk_address PRIMARY KEY (addressID)
+    
+);
+
+CREATE TABLE Customers (
+    customerID INT IDENTITY ,
+    firstName VARCHAR(100) NOT NULL,
+    lastName VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    mainPhoneNumber VARCHAR(15) NOT NULL,
+    secondaryPhoneNumber VARCHAR(15),
+    CONSTRAINT pk_customer PRIMARY KEY (customerID),
+    CONSTRAINT fk_address FOREIGN KEY (addressID) REFERENCES Addresses(addressID),
+);
+
+
+CREATE TABLE ItemCategories (
+    categoryID INT IDENTITY,
+    parentCategoryID INT,
+    categoryName VARCHAR(100) NOT NULL
+    CONSTRAINT pk_category PRIMARY KEY (categoryID),
+    CONSTRAINT fk_category FOREIGN KEY (categoryID) REFERENCES itemCategories(categoryID)
+);
+
+
+
+CREATE TABLE Items (
+    itemID INT IDENTITY,
+    itemName VARCHAR(150) NOT NULL,
+    itemDescription VARCHAR(MAX) NOT NULL,
+    itemCost DECIMAL(10,2) NOT NULL,
+    itemImage VARCHAR(MAX) NOT NULL,
+    categoryID INT NOT NULL 
+    CONSTRAINT pk_item PRIMARY KEY (itemID),
+    CONSTRAINT fk_category FOREIGN KEY (categoryID) REFERENCES ItemCategories(categoryID)
+);
+
+
+
+CREATE TABLE CustomerOrders (
+    orderNumber INT IDENTITY,
+    customerID INT NOT NULL,
+    orderDate DATE NOT NULL DEFAULT GETDATE(),
+    datePaid DATE,
+    CONSTRAINT pk_orderNumber PRIMARY KEY (orderNumber),
+    CONSTRAINT fk_category FOREIGN KEY (customerID) REFERENCES Customers(customerID)
+);
+
+
+
+
+
+CREATE TABLE ItemsInOrder (
+    orderNumber INT NOT NULL ,
+    itemID INT NOT NULL,
+    numberOf INT NOT NULL DEFAULT 1,
+    totalItemCost DECIMAL(10,2),
+    CONSTRAINT pk_orderNumberNitemID PRIMARY KEY (orderNumber, itemID),
+    CONSTRAINT fk_item FOREIGN KEY (itemID) REFERENCES  Items(itemID),
+    CONSTRAINT fk_orderNumber FOREIGN KEY (orderNumber) REFERENCES CustomerOrders(orderNumber)
+);
+
+
+
+
+CREATE TABLE Reviews (
+    reviewID INT IDENTITY,
+    customerID INT NOT NULL,
+    itemID INT NOT NULL,
+    reviewDate DATE NOT NULL DEFAULT GETDATE(),
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    reviewDescription VARCHAR(MAX) NOT NULL,
+    CONSTRAINT CK1 UNIQUE (customerID, itemID, reviewDate),
+    CONSTRAINT fk_customer FOREIGN KEY (customerID) REFERENCES Customers(customerID),
+    CONSTRAINT fk_items FOREIGN KEY (itemID) REFERENCES Items(itemID),
+    CONSTRAINT pk_review PRIMARY KEY (reviewID),
+);
+
+CREATE TABLE ItemMarkupHistory (
+    itemID INT NOT NULL,
+    startDate DATE NOT NULL,
+    endDate DATE,
+    markup DECIMAL(4,1) DEFAULT 1.3 NOT NULL,
+    sale BIT DEFAULT 0,
+    CONSTRAINT pk_itemNstartDate PRIMARY KEY (itemID, startDate),
+    CONSTRAINT fk_item FOREIGN KEY (itemID) REFERENCES Items(itemID),
+);
+
+
+
+-- CREATE TABLE Customers (
+--     customerID INT IDENTITY PRIMARY KEY,
+--     firstName VARCHAR(100) NOT NULL,
+--     lastName VARCHAR(100) NOT NULL,
+--     email VARCHAR(100) NOT NULL,
+--     mainPhoneNumber VARCHAR(15) NOT NULL,
+--     secondaryPhoneNumber VARCHAR(15),
+--     addressID INT FOREIGN KEY REFERENCES Addresses(addressID)
+-- );
+
+
+```
+
+other 
 
 ```sql
 CREATE TABLE Addresses (
