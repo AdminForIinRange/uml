@@ -3,8 +3,8 @@ Question 1: Using an aggregate function, find the date of the earliest customer 
 
 SELECT MIN(orderDate) AS earliestOrderDate
 FROM CustomerOrders;
-Question 2: Find the names of all customers that placed an order on the same day as the earliest customer order.
 ```
+Question 2: Find the names of all customers that placed an order on the same day as the earliest customer order.
 ```sql
 
 SELECT c.firstName, c.lastName
@@ -14,8 +14,8 @@ WHERE o.orderDate = (
     SELECT MIN(orderDate)
     FROM CustomerOrders
 );
-Question 3: Find the total cost of each customer order showing the order number and total value for the above earliest date. Sort the values in order of increasing total value.
 ```
+Question 3: Find the total cost of each customer order showing the order number and total value for the above earliest date. Sort the values in order of increasing total value.
 ```sql
 
 SELECT iio.orderNumber, SUM(iio.totalItemCost) AS totalValue
@@ -27,8 +27,8 @@ WHERE o.orderDate = (
 )
 GROUP BY iio.orderNumber
 ORDER BY totalValue ASC;
-Question 4: Find the average cost of all orders made on the earliest order date.
 ```
+Question 4: Find the average cost of all orders made on the earliest order date.
 ```sql
 
 SELECT AVG(totalValue) AS averageOrderCost
@@ -42,8 +42,8 @@ FROM (
     )
     GROUP BY iio.orderNumber
 ) AS orderTotals;
-Question 5: Show the customer name and number of orders each customer has made grouping only by customerID. Don’t forget to convert NULL to “0” and order the results by the number of orders increasing.
 ```
+Question 5: Show the customer name and number of orders each customer has made grouping only by customerID. Don’t forget to convert NULL to “0” and order the results by the number of orders increasing.
 ```sql
 
 SELECT c.firstName, c.lastName, ISNULL(COUNT(o.orderNumber), 0) AS numberOfOrders
@@ -51,8 +51,8 @@ FROM Customers c
 LEFT JOIN CustomerOrders o ON c.customerID = o.customerID
 GROUP BY c.customerID, c.firstName, c.lastName
 ORDER BY numberOfOrders ASC;
-Question 6: Show the names of people who have made the most orders (i.e., different order numbers for a given customer).
 ```
+Question 6: Show the names of people who have made the most orders (i.e., different order numbers for a given customer).
 ```sql
 
 SELECT c.firstName, c.lastName
@@ -67,8 +67,8 @@ HAVING COUNT(o.orderNumber) = (
         GROUP BY customerID
     ) AS subquery
 );
-Question 7: Find the item(s) that has been purchased the most.
 ```
+Question 7: Find the item(s) that has been purchased the most.
 ```sql
 
 SELECT i.itemName, SUM(iio.numberOf) AS totalPurchased
